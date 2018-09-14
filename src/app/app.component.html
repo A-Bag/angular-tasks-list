@@ -1,32 +1,13 @@
 <div>
   <div class="container">
-    <div>
-      <input [(ngModel)]="newTask">
-      <button (click)="add()">Add</button>
-    </div>
+    <app-add-task (emitTask)="add($event)"></app-add-task>
   </div>
   <div class="container">
     <div>
-      <ng-container *ngIf="tasks.length > 0; else noTasks">
-        <ul>
-          <li *ngFor="let task of tasks">
-            {{task}}
-            <button (click)="remove(task)">Delete</button>
-            <button (click)="done(task)">Done</button>
-          </li>
-        </ul>
-      </ng-container>
-      <ng-template #noTasks>
-        No tasks - you are free :)
-      </ng-template>
+      <app-todo-task [tasks]="tasks" (emitDone)="done($event)" (emitRemoved)="remove($event)"></app-todo-task>
     </div>
     <div>
-      <p>Tasks done: {{tasksDone.length}}</p>
-      <ul>
-        <li *ngFor="let task of tasksDone">
-          {{task}}
-        </li>
-      </ul>
+      <app-done-task [tasksDone]="tasksDone"></app-done-task>
     </div>
   </div>
 </div>
