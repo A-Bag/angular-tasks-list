@@ -11,7 +11,9 @@ export class TodoTaskComponent implements OnInit {
   tasks: Array<Task> = [];
 
   constructor(private taskService: TaskService) {
-    this.taskService.getTasksObs().subscribe((tasks: Array<Task>) => this.tasks = tasks.slice());
+    this.taskService.getTasksObs().subscribe((tasks: Array<Task>) => {
+      this.tasks = tasks.filter(t => t.isDone === false);
+    });
   }
 
   ngOnInit() {
@@ -22,7 +24,6 @@ export class TodoTaskComponent implements OnInit {
   }
 
   done(task: Task) {
-    task.end = new Date();
     this.taskService.done(task);
   }
 
