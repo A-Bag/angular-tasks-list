@@ -1,8 +1,8 @@
 <ng-container *ngIf="tasks.length > 0; else noTasks">
   <p [ngStyle]="{color: getColor()}">TODO tasks: {{tasks.length}}</p>
   <ul>
-    <li appDate [date]="task.created" *ngFor="let task of tasks">
-      {{task.name}}
+    <li appDate [date]="task.created" *ngFor="let task of tasks | sortName">
+      {{task.name | transformTask: '!'}}
       <button type="button" class="btn btn-danger"  (click)="remove(task)">Delete</button>
       <button type="button" class="btn btn-success" (click)="done(task)">Done</button>
     </li>
