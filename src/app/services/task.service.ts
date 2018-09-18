@@ -12,9 +12,8 @@ export class TaskService {
     this.httpService.getTasks().subscribe(tasks => this.tasksObs.next(tasks));
   }
 
-  add(task: Task) {
-    const list = this.tasksObs.getValue();
-    list.push(task);
+  add(tasks: Task[]) {
+    const list = this.tasksObs.getValue().concat(tasks);
     this.tasksObs.next(list);
   }
   remove(task: Task) {
