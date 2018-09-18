@@ -30,4 +30,8 @@ export class TodoTaskComponent implements OnInit {
   getColor(): string {
     return this.tasks.length >= 5 ? 'red' : 'green';
   }
+
+  save() {
+    this.taskService.saveTasksInDb();
+  }
 }

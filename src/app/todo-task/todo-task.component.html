@@ -1,13 +1,17 @@
-<ng-container *ngIf="tasks.length > 0; else noTasks">
-  <p [ngStyle]="{color: getColor()}">TODO tasks: {{tasks.length}}</p>
-  <ul>
-    <li appDate [date]="task.created" *ngFor="let task of tasks | sortName">
-      {{task.name | transformTask: '!'}}
-      <button type="button" class="btn btn-danger"  (click)="remove(task)">Delete</button>
-      <button type="button" class="btn btn-success" (click)="done(task)">Done</button>
-    </li>
-  </ul>
-</ng-container>
-<ng-template #noTasks>
-  No tasks - you are free :)
-</ng-template>
+<div class="container">
+  <app-add-task></app-add-task>
+  <ng-container *ngIf="tasks.length > 0; else noTasks">
+    <p [ngStyle]="{color: getColor()}">TODO tasks: {{tasks.length}}</p>
+    <ul>
+      <li appDate [date]="task.created" *ngFor="let task of tasks | sortName">
+        {{task.name | transformTask: '!'}}
+        <button type="button" class="btn btn-danger" (click)="remove(task)">Delete</button>
+        <button type="button" class="btn btn-success" (click)="done(task)">Done</button>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #noTasks>
+    No tasks - you are free :)
+  </ng-template>
+  <button (click)="save()">Save</button>
+</div>

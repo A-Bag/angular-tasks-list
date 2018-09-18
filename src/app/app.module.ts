@@ -12,6 +12,7 @@ import { TransformTaskPipe } from './shared/transform-task.pipe';
 import { SortNamePipe } from './shared/sort-name.pipe';
 import {HttpService} from './services/http.service';
 import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app.routing.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [TaskService, HttpService],
   bootstrap: [AppComponent]

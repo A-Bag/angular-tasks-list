@@ -1,14 +1,9 @@
-<div>
-  <div class="container">
-    <app-add-task></app-add-task>
-  </div>
-  <div class="container">
-    <div>
-      <app-todo-task></app-todo-task>
-    </div>
-    <div>
-      <app-done-task></app-done-task>
-    </div>
-  </div>
-  <button (click)="save()">Save</button>
-</div>
+<ul class="nav nav-pills justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="todoTask" routerLinkActive="active">TODO tasks</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="doneTask" routerLinkActive="active">Done tasks</a>
+  </li>
+</ul>
+<router-outlet></router-outlet>
