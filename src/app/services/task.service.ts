@@ -3,12 +3,23 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import {Task} from '../model/task';
 import {HttpService} from './http.service';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Injectable()
 export class TaskService {
   private tasksObs = new BehaviorSubject<Array<Task>>([]);
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private angularFire: AngularFireAuth) {
+    this.angularFire.authState.subscribe(user => {
+      if (user) {
+        this.init();
+      } else {
+        this.tasksObs.next([]);
+      }
+    });
+  }
+
+  init() {
     this.httpService.getTasks().subscribe(tasks => this.tasksObs.next(tasks));
   }
 

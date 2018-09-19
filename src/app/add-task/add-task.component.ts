@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TaskService} from '../services/task.service';
 import {Task} from '../model/task';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-add-task',
@@ -12,7 +13,7 @@ export class AddTaskComponent implements OnInit {
 
   addForm: FormGroup;
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -35,7 +36,7 @@ export class AddTaskComponent implements OnInit {
     const tasksList = <Task[]>[];
     const tasksArr = <[string]>this.addForm.get('taskName').value;
     tasksArr.forEach(taskName => {
-      tasksList.push({name: taskName, created: new Date().toLocaleString(), isDone: false});
+      tasksList.push({name: taskName, userId: this.authService.user.uid, created: new Date().toLocaleString(), isDone: false});
     });
     return tasksList;
   }
