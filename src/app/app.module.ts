@@ -18,15 +18,9 @@ import {AuthService} from './auth/auth.service';
 import {AuthGuardService} from './auth/auth-guard.service';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth/';
+import {environment} from '../environments/environment';
 
-const config = {
-  apiKey: 'AIzaSyCqQ1WoWkRFB1scNTI7tF9OWNaRORZ42vo',
-  authDomain: 'task-list-c6a76.firebaseapp.com',
-  databaseURL: 'https://task-list-c6a76.firebaseio.com',
-  projectId: 'task-list-c6a76',
-  storageBucket: 'task-list-c6a76.appspot.com',
-  messagingSenderId: '935211554173'
-};
+const config = environment.config;
 
 @NgModule({
   declarations: [
